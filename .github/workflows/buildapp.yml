@@ -84,7 +84,7 @@ jobs:
         id: SDK
         uses: actions/cache@v4.3.0
         env:
-          cache-name: iOS-${{ inputs.sdk_version }}-SDK
+          cache-name: iOS-${{ inputs.sdk_version }}-plus-16.2-SDK
         with:
           path: theos/sdks/
           key: ${{ env.cache-name }}
@@ -95,7 +95,7 @@ jobs:
         run: |
           git clone --quiet -n --depth=1 --filter=tree:0 https://github.com/aricloverALT/sdks/
           cd sdks
-          git sparse-checkout set --no-cone iPhoneOS${{ inputs.sdk_version }}.sdk
+          git sparse-checkout set --no-cone iPhoneOS${{ inputs.sdk_version }}.sdk iPhoneOS16.2.sdk
           git checkout
           mv *.sdk $THEOS/sdks
         env:
